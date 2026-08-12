@@ -1,0 +1,6 @@
+# Vendor properties for OnePlus 9RT (martini)
+ro.product.vendor.device=martini
+ro.product.vendor.model=MT2111
+ro.product.vendor.brand=OnePlus
+ro.product.vendor.name=OnePlus9RT
+ro.vendor.build.product=martini
