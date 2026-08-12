@@ -1,24 +1,26 @@
-# TWRP product makefile for OnePlus 9RT (martini)
-# The GitHub Actions builder uses: lunch twrp_martini-eng
+#
+# Copyright (C) 2021-2024 The OrangeFox Recovery Project
+# OnePlus 9RT (martini) — based on vayu template (fox_12.1)
+#
 
-# Include TWRP configuration
-$(call inherit-product, vendor/recovery/twrp.mk)
+# Release name
+PRODUCT_RELEASE_NAME := martini
+DEVICE_PATH := device/oneplus/$(PRODUCT_RELEASE_NAME)
 
-# Include device configuration
-$(call inherit-product, device/oneplus/martini/device.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
+$(call inherit-product, vendor/twrp/config/common.mk)
+$(call inherit-product, $(DEVICE_PATH)/device.mk)
+
+# SM8350 common product config (A/B, update engine, bootctrl, etc.)
 $(call inherit-product, device/oneplus/martini/sm8350-common/common.mk)
 
-# Product identity
-PRODUCT_NAME := twrp_martini
-PRODUCT_DEVICE := martini
-PRODUCT_BRAND := OnePlus
-PRODUCT_MODEL := OnePlus 9RT 5G
-PRODUCT_MANUFACTURER := OnePlus
-PRODUCT_RELEASE_NAME := OnePlus9RT
+# Inherit any OrangeFox-specific settings
+$(call inherit-product-if-exists, $(DEVICE_PATH)/fox_martini.mk)
 
-# Recovery properties
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.build.product=martini \
-    ro.product.device=martini \
-    persist.sys.usb.config=adb \
-    sys.usb.config=adb
+## Device identifier. This must come after all inclusions
+PRODUCT_DEVICE := $(PRODUCT_RELEASE_NAME)
+PRODUCT_NAME := twrp_$(PRODUCT_RELEASE_NAME)
+PRODUCT_BRAND := OnePlus
+PRODUCT_MODEL := MT2111
+PRODUCT_MANUFACTURER := OnePlus

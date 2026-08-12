@@ -1,33 +1,83 @@
-# Device makefile for OnePlus 9RT (martini)
-# Based on bheatleyyy/device_oplus_martini + lemonadep TWRP tree
+#
+# Copyright (C) 2021-2024 The OrangeFox Recovery Project
+# OnePlus 9RT (martini) — based on vayu template (fox_12.1)
+#
 
-LOCAL_PATH := $(call my-dir)
+# fscrypt policy
+TW_USE_FSCRYPT_POLICY := 2
 
-# Boot control HAL (A/B)
+# Display
+TARGET_SCREEN_HEIGHT := 2400
+TARGET_SCREEN_WIDTH := 1080
+
+PRODUCT_SOONG_NAMESPACES += \
+    vendor/qcom/opensource/commonsys-intf/display
+
+PRODUCT_SHIPPING_API_LEVEL := 30
+
+# Assert
+TARGET_OTA_ASSERT_DEVICE := martini
+
+TARGET_COPY_OUT_VENDOR := vendor
+
+PRODUCT_USE_DYNAMIC_PARTITIONS := true
+
+# Crypto
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.1-impl \
-    android.hardware.boot@1.1-service \
-    bootctrl.lahaina
+    qcom_decrypt \
+    qcom_decrypt_fbe
 
-# Health HAL (battery)
-PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl \
-    android.hardware.health@2.1-service
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
 
-# Vibrator
-PRODUCT_PACKAGES += \
-    android.hardware.vibrator-service.lahaina
+# platform
+PLATFORM_VERSION := 99.87.36
+PLATFORM_VERSION_LAST_STABLE := $(PLATFORM_VERSION)
 
-# Update engine (A/B)
-PRODUCT_PACKAGES += \
-    update_engine \
-    update_engine_client \
-    update_verifier
+# security patch
+PLATFORM_SECURITY_PATCH := 2127-12-31
 
-# USB
-PRODUCT_PACKAGES += \
-    android.hardware.usb@1.3-service.dual_role_usb
+# vendor
+VENDOR_SECURITY_PATCH := $(PLATFORM_SECURITY_PATCH)
 
-# fstab
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/fstab.lahaina:$(TARGET_COPY_OUT_VENDOR_RAMDISK)/first_stage_ramdisk/fstab.lahaina
+# Recovery
+TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
+TARGET_RECOVERY_FSTAB := $(DEVICE_PATH)/recovery/root/system/etc/recovery.fstab
+TARGET_RECOVERY_DEVICE_MODULES += libion vendor.display.config@1.0 vendor.display.config@2.0 libdisplayconfig.qti
+
+# TWRP specific build flags
+TW_THEME := portrait_hdpi
+RECOVERY_SDCARD_ON_DATA := true
+TARGET_RECOVERY_QCOM_RTC_FIX := true
+TW_EXCLUDE_DEFAULT_USB_INIT := true
+TW_EXTRA_LANGUAGES := true
+TW_INCLUDE_NTFS_3G := true
+TW_USE_TOOLBOX := true
+TW_INCLUDE_RESETPROP := true
+TW_INCLUDE_LIBRESETPROP := true
+TW_INPUT_BLACKLIST := "hbtp_vm"
+TW_BRIGHTNESS_PATH := "/sys/class/backlight/panel0-backlight/brightness"
+TW_MAX_BRIGHTNESS := 4095
+TW_DEFAULT_BRIGHTNESS := 1640
+TWRP_INCLUDE_LOGCAT := true
+TARGET_USES_LOGD := true
+TARGET_USES_MKE2FS := true
+TW_NO_SCREEN_BLANK := true
+TW_EXCLUDE_APEX := true
+
+# Vibrator (SM8350 lahaina)
+TW_SUPPORT_INPUT_AIDL_HAPTICS := true
+
+RECOVERY_BINARY_SOURCE_FILES += \
+    $(TARGET_OUT_VENDOR_EXECUTABLES)/hw/vendor.qti.hardware.vibrator.service
+
+RECOVERY_LIBRARY_SOURCE_FILES += \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libion.so \
+    $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.0.so \
+    $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so \
+    $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/libdisplayconfig.qti.so
+
+# OEM otacert
+PRODUCT_EXTRA_RECOVERY_KEYS += \
+    vendor/recovery/security/miui

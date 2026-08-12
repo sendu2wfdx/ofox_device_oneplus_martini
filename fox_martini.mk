@@ -1,28 +1,41 @@
-# OrangeFox product makefile for OnePlus 9RT (martini)
-# BUILD_TARGET: recovery (with recovery-as-boot, produces recovery.img)
+#
+#	This file is part of the OrangeFox Recovery Project
+# 	Copyright (C) 2021-2026 The OrangeFox Recovery Project
+#
+# OrangeFox-specific settings for OnePlus 9RT (martini)
+#
 
-# Include OrangeFox common configuration
-$(call inherit-product, vendor/recovery/twrp.mk)
+# General
+OF_USE_GREEN_LED := 0
+OF_DONT_PATCH_ENCRYPTED_DEVICE := 1
+OF_NO_TREBLE_COMPATIBILITY_CHECK := 1
+OF_NO_MIUI_PATCH_WARNING := 1
 
-# Include device configuration
-$(call inherit-product, device/oneplus/martini/device.mk)
-$(call inherit-product, device/oneplus/martini/sm8350-common/common.mk)
+# A/B device
+OF_AB_DEVICE_WITH_RECOVERY_PARTITION := 0
+OF_VIRTUAL_AB_DEVICE := 1
 
-# Product identity
-PRODUCT_NAME := fox_martini
-PRODUCT_DEVICE := martini
-PRODUCT_BRAND := OnePlus
-PRODUCT_MODEL := OnePlus 9RT 5G
-PRODUCT_MANUFACTURER := OnePlus
-PRODUCT_RELEASE_NAME := OnePlus9RT
+# Features
+OF_ENABLE_LPTOOLS := 1
+OF_QUICK_BACKUP_LIST := /boot;/data;
+OF_USE_MAGISKBOOT := 1
+OF_USE_MAGISKBOOT_FOR_ALL_PATCHES := 1
+OF_ADVANCED_SECURITY := 1
+OF_ENABLE_APP_MANAGER := 1
+OF_USE_NANO_EDITOR := 1
+OF_FLASHLIGHT_ENABLE := 0
 
-# OrangeFox branding
-PRODUCT_PACKAGE_OVERLAYS += vendor/fox/overlay
+# Disable unwanted addons
+OF_DISABLE_MIUI_SPECIFIC_FEATURES := 1
+OF_DISABLE_DM_VERITY_FORCED_ENCRYPTION := 1
 
-# Recovery properties
-PRODUCT_PROPERTY_OVERRIDES += \
-    ro.build.product=martini \
-    ro.product.device=martini \
-    persist.sys.usb.config=adb \
-    sys.usb.config=adb \
-    ro.twrp.boot=true
+# Theme settings
+OF_SCREEN_H := 2400
+OF_STATUS_H := 100
+OF_STATUS_INDENT_LEFT := 60
+OF_STATUS_INDENT_RIGHT := 60
+OF_CLOCK_POS := 1
+OF_ALLOW_DISABLE_NAVBAR := 0
+
+# Magisk
+OF_MAGISK_ZIP := Magisk.zip
