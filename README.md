@@ -36,6 +36,6 @@ mka recoveryimage
 
 ## Notes
 - The device tree depends on `nilz3000/device_oneplus_sm8350-common-TWRP` (android-12.1 branch)
-- Prebuilt kernel needed at `device/oneplus/sm8350-common/prebuilt/Image`
+- Prebuilt kernel needed at `device/oneplus/martini/sm8350-common/prebuilt/Image`
   (extract from stock OxygenOS boot.img)
 - For FBE decryption: the recovery must match the security patch level of installed Android

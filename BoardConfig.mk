@@ -17,7 +17,7 @@ ALLOW_MISSING_DEPENDENCIES := true
 TARGET_NO_RECOVERY := true
 
 # Include SM8350 common config
-include device/oneplus/sm8350-common/BoardConfigCommon.mk
+include device/oneplus/martini/sm8350-common/BoardConfigCommon.mk
 
 # ===== OrangeFox flags =====
 FOX_VERSION := "R12.1"

@@ -6,7 +6,7 @@ $(call inherit-product, vendor/fox/twrp.mk)
 
 # Include device configuration
 $(call inherit-product, device/oneplus/martini/device.mk)
-$(call inherit-product, device/oneplus/sm8350-common/common.mk)
+$(call inherit-product, device/oneplus/martini/sm8350-common/common.mk)
 
 # Product identity
 PRODUCT_NAME := twrp_martini

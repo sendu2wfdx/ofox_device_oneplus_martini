@@ -2,7 +2,7 @@
 # Call lunch with: lunch fox_martini-eng
 
 # Include the common device config
-$(call inherit-product, device/oneplus/sm8350-common/common.mk)
+$(call inherit-product, device/oneplus/martini/sm8350-common/common.mk)
 
 # Include OrangeFox common configuration
 $(call inherit-product, vendor/fox/twrp.mk)

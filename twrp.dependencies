@@ -1,8 +1,1 @@
-[
-  {
-    "repository": "device_oneplus_sm8350-common-TWRP",
-    "target_path": "device/oneplus/sm8350-common",
-    "remote": "github",
-    "branch": "android-12.1"
-  }
-]
+[]
