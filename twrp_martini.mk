@@ -2,7 +2,7 @@
 # The GitHub Actions builder uses: lunch twrp_martini-eng
 
 # Include TWRP configuration
-$(call inherit-product, vendor/fox/twrp.mk)
+$(call inherit-product, vendor/recovery/twrp.mk)
 
 # Include device configuration
 $(call inherit-product, device/oneplus/martini/device.mk)

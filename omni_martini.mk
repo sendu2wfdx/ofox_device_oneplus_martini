@@ -5,7 +5,7 @@
 $(call inherit-product, device/oneplus/martini/sm8350-common/common.mk)
 
 # Include OrangeFox common configuration
-$(call inherit-product, vendor/fox/twrp.mk)
+$(call inherit-product, vendor/recovery/twrp.mk)
 
 # Device identifier
 PRODUCT_NAME := fox_martini

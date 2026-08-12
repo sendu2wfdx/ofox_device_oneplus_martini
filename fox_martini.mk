@@ -2,7 +2,7 @@
 # BUILD_TARGET: recovery (with recovery-as-boot, produces recovery.img)
 
 # Include OrangeFox common configuration
-$(call inherit-product, vendor/fox/twrp.mk)
+$(call inherit-product, vendor/recovery/twrp.mk)
 
 # Include device configuration
 $(call inherit-product, device/oneplus/martini/device.mk)
