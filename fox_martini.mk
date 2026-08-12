@@ -12,7 +12,8 @@ OF_NO_TREBLE_COMPATIBILITY_CHECK := 1
 OF_NO_MIUI_PATCH_WARNING := 1
 
 # A/B device (virtual AB)
-export FOX_VIRTUAL_AB_DEVICE := 1
+# FOX_VIRTUAL_AB_DEVICE is auto-detected via PRODUCT_VIRTUAL_AB_OTA
+# (set by sm8350-common/common.mk virtual_ab_ota include)
 
 # Features
 OF_ENABLE_LPTOOLS := 1
